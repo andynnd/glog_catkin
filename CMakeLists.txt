@@ -13,10 +13,10 @@ ExternalProject_Add(glog_src
   URL https://github.com/google/glog/archive/v${VERSION}.zip
   UPDATE_COMMAND ""
   PATCH_COMMAND patch -p0 < ${CMAKE_SOURCE_DIR}/glog_catkin/fix-unused-typedef-warning.patch
-  CONFIGURE_COMMAND cd ../glog_src/ && mkdir ~/scripts/simulation/ros_catkin_ws/build/glog_catkin/glog_src-prefix/src/glog_src-stamp/glog_src-patch && cp ${CMAKE_SOURCE_DIR}/glog_catkin/fix-unused-typedef-warning.patch ~/scripts/simulation/ros_catkin_ws/build/glog_catkin/glog_src-prefix/src/glog_src-stamp/glog_src-patch && ./configure --with-pic
+  CONFIGURE_COMMAND cd ../glog_src/ && ./configure --with-pic
     --with-gflags=${gflags_catkin_PREFIX}
     --prefix=${CATKIN_DEVEL_PREFIX}
-  BUILD_COMMAND cd ../glog_src/ && make -j 8
+  BUILD_COMMAND mkdir ~/scripts/simulation/ros_catkin_ws/build/glog_catkin/glog_src-prefix/src/glog_src-stamp/glog_src-patch && cp ${CMAKE_SOURCE_DIR}/glog_catkin/fix-unused-typedef-warning.patch ~/scripts/simulation/ros_catkin_ws/build/glog_catkin/glog_src-prefix/src/glog_src-stamp/glog_src-patch && cd ../glog_src/ && make -j 8
   INSTALL_COMMAND cd ../glog_src/ && make install -j 8
 )
 
